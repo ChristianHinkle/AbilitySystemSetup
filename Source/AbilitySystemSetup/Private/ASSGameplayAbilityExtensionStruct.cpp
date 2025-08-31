@@ -13,7 +13,7 @@ DEFINE_LOG_CATEGORY_STATIC(LogASSGameplayAbilityExtensionStruct, Log, All);
 namespace
 {
     /**
-     * @brief [inaccessible-access-engine] Call `UGameplayAbility::IsEndAbilityValid`.
+     * @brief [workaround.inaccessible_access[engine]] Call `UGameplayAbility::IsEndAbilityValid`.
      */
     template
         <
@@ -42,13 +42,13 @@ bool FASSGameplayAbilityExtensionStruct::IsEndAbilitySafe(
     bool inWasCanceled
     ) const
 {
-    // [duplicate-code-engine] Say it's not safe to perform end ability logic if this end ability is not valid.
+    // [duplicate_code[engine]] Say it's not safe to perform end ability logic if this end ability is not valid.
     if (!CallIsEndAbilityValidInternal(inAbility, inSpecHandle, inActorInfo))
     {
         return false;
     }
 
-    // [duplicate-code-engine] Say it's not safe to perform end ability logic if this ability's scope lock count is greater than zero.
+    // [duplicate_code[engine]] Say it's not safe to perform end ability logic if this ability's scope lock count is greater than zero.
     if (ASSUtils::GetGameplayAbilityScopeLockCount(inAbility) > 0)
     {
         return false;
